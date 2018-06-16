@@ -1,0 +1,58 @@
+<app-cabecera></app-cabecera>
+<table class="table table-condensed"> 
+    <thead>
+            <tr >
+                <th ><font color="3a7999" size="3" >Asignar vehiculo a remisero(sin vehiculo)</font></th>
+                <th ><font color="3a7999" size="3" >Modificar vehiculo a remisero(Con vehiculo)</font></th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr> 
+            <td>  
+                    <br><select class="form-control"  style="width:350px" id="1" >
+                    <option value="" disabled selected>Seleccione Remisero..</option>   
+                    <option *ngFor="let j of remiserosSinAuto"
+                    [value]="j.id">{{j.nombre}}</option>
+                    </select><br>
+                    <select class="form-control"  style="width:350px" id="2" >
+                            <option value="" disabled selected>Seleccione Vehiculo..</option>   
+                        <option *ngFor="let j of vehiculoSinDueno"
+                            [value]="j.id">{{j.modelo}}</option>
+                    </select><br>
+                    <button type="button" (click)="Asignar()" class='boton'>Asignar Vehiculo</button>
+            </td>
+            <td>
+                    <!-- <br><select class="form-control"  style="width:350px" id="3" >
+                    <option value="" disabled selected>Seleccione Remisero..</option>   
+                    <option *ngFor="let j of remiserosConAuto"
+                    [value]="j.id">{{j.nombre}}</option>
+                    </select><br>
+                    <select class="form-control"  style="width:350px" id="4" >
+                            <option value="" disabled selected>Seleccione Vehiculo..</option>   
+                        <option *ngFor="let j of todosLosVehiculos"
+                            [value]="j.id">{{j.modelo}}</option>
+                    </select><br>
+                    <button type="button" (click)="Modificar()" class='boton'>Asignar Vehiculo</button> -->
+                    <table class="table table-condensed"> 
+                            <thead>
+                                    <tr >
+                                        <th ><font color="3a7999" size="3" >Remisero </font></th>
+                                        <th ><font color="3a7999" size="3" >Desasignar vehiculo</font></th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of remiserosConAuto"> 
+                                        <td><font color="3a7999" size="3">{{item.nombre}} </font></td>        
+                                        <td><div *ngIf="item.estado != 'Finalizado'">
+                                        <button type="button" (click)="Modificar(item.id)" class='boton'>Desasignar</button>             
+                                        </div> </td> 
+                                    </tr>  
+                            </tbody> 
+                        </table>
+            </td>
+        </tr>  
+    </tbody> 
+</table>
+    
+
+<app-footer></app-footer>

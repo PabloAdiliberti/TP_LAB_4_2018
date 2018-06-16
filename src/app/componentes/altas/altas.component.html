@@ -1,0 +1,43 @@
+
+<app-cabecera></app-cabecera>
+
+<table class="table table-condensed">
+    <thead>
+      <tr>
+          <th><font color="3a7999" size="3">Alta remmisero</font></th>
+          <th><font color="3a7999" size="3">Alta vehiculos</font></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- Alta remmisero -->
+        <td>
+            <select class="form-control"  style="width:350px"  id="idUsuarios">
+                <option value="" disabled selected>Seleccione usuario</option>   
+            <option *ngFor="let j of usuariosCombo"
+                [value]="j.id">{{j.nombre}}</option>
+            </select><br>
+            <button type="button" (click)="ActualizarARemisero()" class='boton'>Alta remisero</button>
+        </td>
+         <!-- Alta vehiculos -->
+        <td>
+          <select class="form-control"  style="width:350px" id="2" [(ngModel)]="tipo" >
+                <option value="" disabled selected>Seleccione tipo vehiculo</option>
+                <option value="Auto">Auto</option>
+                <option value="Camioneta">Camioneta</option>
+                <option value="Furgonetas">Furgonetas</option>
+          </select><br>
+          <select class="form-control"  style="width:350px" id="1" [(ngModel)]="nivel" >
+                  <option value="" disabled selected>Seleccione nivel de comodidad</option>
+                  <option value="Estandar">Estandar</option>
+                  <option value="Premium">Premium</option>
+                  <option value="Super Lujo">Super Lujo</option>
+          </select><br>
+          <input type="text" style="width:350px" class="form-control" name="modelo" [(ngModel)]="modelo" placeholder="Modelo"/><br>
+          <button type="button" (click)="AltaVehiculo()" class='boton'>Alta vehiculo</button>
+
+        </td>
+      </tr>   
+    </tbody>
+  </table>
+<app-footer></app-footer>

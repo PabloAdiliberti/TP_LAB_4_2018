@@ -1,0 +1,58 @@
+<app-cabecera></app-cabecera>
+<table class="table table-condensed"> 
+    <thead>
+        <tr>
+            <th><font color="3a7999" size="3">Remiseros</font></th>
+            <th><font color="3a7999" size="3">Vehiculos</font></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <table class="table table-condensed"> 
+                    <thead>
+                        <tr>
+                            <th><font color="3a7999" size="3">Nombre</font></th>
+                            <th><font color="3a7999" size="3">Habilitado</font></th>
+                            <th><font color="3a7999" size="3">Mail</font></th>
+                            <th><font color="3a7999" size="3">Vehiculo</font></th>
+                            <th><font color="3a7999" size="3">Guardar</font></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of RemiserosList"> 
+                                <td><font color="3a7999" size="3">{{item.nombre}} </font></td>        
+                                <td><input type="checkbox" [checked]="item.habilitado == 'S'" id="{{item.id}}"></td>
+                                <td><font color="3a7999" size="3">{{item.mail}} </font></td>
+                                <td><font color="3a7999" size="3">{{item.vehiculo}} </font></td>
+                                <td><button type="button" (click)="Guardar(item.id)" class='boton'>Guardar</button> </td>              
+                        </tr>  
+                    </tbody> 
+                </table>
+            </td>
+            <td>
+                <table class="table table-condensed"> 
+                    <thead>
+                        <tr>
+                            <th><font color="3a7999" size="3">Modelo</font></th>
+                            <th><font color="3a7999" size="3">Habilitado</font></th>
+                            <th><font color="3a7999" size="3">Tipo</font></th>
+                            <th><font color="3a7999" size="3">Comodidad</font></th>
+                            <th><font color="3a7999" size="3">Guardar</font></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of VehiculosList"> 
+                                <td><font color="3a7999" size="3">{{item.modelo}} </font></td>        
+                                <td><input type="checkbox" [checked]="item.habilitado == 'S'" id="{{item.id}}"></td>
+                                <td><font color="3a7999" size="3">{{item.tipo}} </font></td>
+                                <td><font color="3a7999" size="3">{{item.comodidad}} </font></td>
+                                <td><button type="button" (click)="GuardarVehiculo(item.id)" class='boton'>Guardar</button> </td>              
+                        </tr>  
+                    </tbody> 
+                </table>
+            </td>
+        </tr>
+    </tbody> 
+</table>
+<app-footer></app-footer>

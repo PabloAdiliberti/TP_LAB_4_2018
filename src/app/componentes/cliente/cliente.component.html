@@ -1,0 +1,67 @@
+<app-cabecera></app-cabecera>
+<table class="table table-condensed">
+    <thead>
+      <tr>
+          <th><font color="3a7999" size="3">Solicitar Viaje</font></th>
+          <th><font color="3a7999" size="3">Mis viajes</font></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- solicitar viaje -->
+        <td>
+            <input type="text" style="width:270px" class="form-control" name="origen" [(ngModel)]="origen" placeholder="origen"/><br>
+            <input type="text" style="width:270px" class="form-control" name="destino" [(ngModel)]="destino" placeholder="destino"/><br>
+            <select class="form-control"  style="width:270px" name="firstField" [(ngModel)]="vehiculo" >
+                <option value="" disabled selected>Seleccione vehiculo</option>
+                <option value="Auto">Auto</option>
+                <option value="Camioneta">Camioneta</option>
+                <option value="Furgonetas">Furgonetas</option>
+                <option value="Indeterminado">Indeterminado</option>
+            </select><br>
+            <select class="form-control"  style="width:270px" name="firstField" [(ngModel)]="nivel" >
+                    <option value="" disabled selected>Seleccione nivel de comodidad</option>
+                    <option value="Estandar">Estandar</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Super Lujo">Super Lujo</option>
+                    <option value="Indeterminado">Indeterminado</option>
+            </select><br>
+            <input type="text" style="width:270px" class="form-control" name="usuario" placeholder="poner capcha"/><br>
+            <button type="button" (click)="Solicitar()" class='boton'>Solicitar</button>
+        </td>
+         <!-- mis viajes -->
+        <td>
+
+          <table class="table table-condensed"> 
+              <thead>
+                  <tr>
+                      <th><font color="3a7999" size="3">Origen</font></th>
+                      <th><font color="3a7999" size="3">Destino</font></th>
+                      <th><font color="3a7999" size="3">Fecha</font></th>
+                      <th><font color="3a7999" size="3">Estado</font></th>
+                      <th><font color="3a7999" size="3">Borrar</font></th>
+                      <th><font color="3a7999" size="3">Modificar</font></th>
+                  </tr>
+                </thead>
+            <tbody>
+                  <tr *ngFor="let item of misviajes"> 
+                        <td><font color="3a7999" size="3">{{item.origen}} </font></td>        
+                        <td><font color="3a7999" size="3">{{item.destino}} </font></td>
+                        <td><font color="3a7999" size="3">{{item.fecha}} </font></td>
+                        <td><font color="3a7999" size="3">{{item.estado}} </font></td>
+                        <td><div *ngIf="item.estado != 'Finalizado'">
+                        <button type="button" (click)="Borrar(item.id)" class='boton2'>Borrar</button> 
+                        </div></td>
+                        <td><div *ngIf="item.estado != 'Finalizado'">
+                        <button type="button" (click)="Modificar(item.id)" class='boton'>Modificar</button>             
+                      </div> </td> 
+                  </tr>  
+            </tbody> 
+          </table>
+
+        </td>
+      </tr>   
+    </tbody>
+  </table>
+
+<app-footer></app-footer>

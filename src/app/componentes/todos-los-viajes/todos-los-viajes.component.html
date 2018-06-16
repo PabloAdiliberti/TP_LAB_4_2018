@@ -1,0 +1,33 @@
+<app-cabecera></app-cabecera>
+
+<table class="table table-condensed"> 
+        <thead>
+            <tr>
+                <th><font color="3a7999" size="3">Origen</font></th>
+                <th><font color="3a7999" size="3">Destino</font></th>
+                <th><font color="3a7999" size="3">Fecha</font></th>
+                <th><font color="3a7999" size="3">Hora</font></th>
+                <th><font color="3a7999" size="3">Prestacion</font></th>
+                <th><font color="3a7999" size="3">Nivel</font></th>
+                <th><font color="3a7999" size="3">remisero</font></th>
+                <th><font color="3a7999" size="3">Estado</font></th>
+                <th><font color="3a7999" size="3">Medio de pago</font></th>
+            </tr>
+          </thead>
+      <tbody>
+            <tr *ngFor="let item of misviajes"> 
+                  <td><font color="3a7999" size="3">{{item.origen}} </font></td>        
+                  <td><font color="3a7999" size="3">{{item.destino}} </font></td>
+                  <td><font color="3a7999" size="3">{{item.fecha}} </font></td>
+                  <td><font color="3a7999" size="3">{{item.hora}} </font></td>
+                  <td><font color="3a7999" size="3">{{item.prestacion}} </font></td>
+                  <td><font color="3a7999" size="3">{{item.nivel}} </font></td>
+                  <td><font color="3a7999" size="3">{{item.nombreremisero}} </font></td>
+                  <td><font color="3a7999" size="3">{{item.estado}} </font></td>
+                  <td><font color="3a7999" size="3">{{item.mediopago}} </font></td>
+
+               
+            </tr>  
+      </tbody> 
+    </table>
+<app-footer></app-footer>

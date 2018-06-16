@@ -1,0 +1,26 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<html >		
+	<body clase = "miclase" background="./assets/2.jpg" >
+        <div class = "container" >
+            <div class="wrapper">
+                <br><br>
+                <form action="" method="post" name="Login_Form" class="form-signin">       
+                    <h3 class="form-signin-heading">Registrar</h3>             
+                    <input type="text"  class="form-control"  name="usuario" [(ngModel)]="nombre" placeholder="Nombre"/><br>
+                    <input type="text"  class="form-control"  name="usuario" [(ngModel)]="edad" placeholder="Edad"/><br>
+                    <input type="text"  class="form-control"  name="usuario" [(ngModel)]="mail" placeholder="Mail"/><br>
+                    <input type="password"  class="form-control"  name="usuario" [(ngModel)]="clave" placeholder="Clave"/><br>
+                    <input type="password"  class="form-control"  name="usuario" [(ngModel)]="clave2" placeholder="Reingrese la clave"/><br>
+                    <!-- <input type="text" class="form-control"  name="usuario" [(ngModel)]="foto" placeholder="foto"/><br> -->
+  
+                    <button type="submit"  class="btn btn-lg btn-primary btn-block" style="background-color:Gray;" (click)="Registrar()" id="submit1">Registrar</button>
+                    <button type="submit"  class="btn btn-lg btn-primary btn-block" style="background-color:Gray;" (click)="Salir()" id="submit">Salir</button>
+                </form>	
+                <br>		
+            </div>
+        </div>  
+	</body>
+</html>
