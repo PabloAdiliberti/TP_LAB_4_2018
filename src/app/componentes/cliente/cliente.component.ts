@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import { ViajesService } from  '../../servicios/viajes.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {Viaje} from '../../clases/viaje';
+import { AlertsService } from 'angular-alert-module';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+
 
 @Component({
   selector: 'app-cliente',
@@ -21,23 +25,41 @@ export class ClienteComponent implements OnInit {
   miViaje:Viaje;
   idCliente:string;
   nivel:string;
+  flag : boolean;
 
-  constructor(private ViajesServ:ViajesService) {
+  constructor(private ViajesServ:ViajesService,
+    private alerts: AlertsService,
+    private spinner: NgxSpinnerService,
+              private router: Router) {
+              
     this.miViaje = new Viaje();
+    this.flag = false;
     this.pago = "";
     this.vehiculo = "";
     this.nivel = "";
     this.idCliente = localStorage.getItem("idCliente");
     this.misviajes = new Array<Viaje>();
+    this.origen = localStorage.getItem("OrigenViaje");
+    this.destino = localStorage.getItem("DestinoViaje");
     this.TraerDatos();
   }
 
   ngOnInit() {
+    this.spinner.show();
+ 
+    setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 2000);
   }
 
 
   TraerDatos()
   {
+    this.spinner.show();
+    setTimeout(() => {
+        this.spinner.hide();
+    }, 2000);
     this.misviajes = null;
     this.misviajes = new Array<Viaje>();
     this.ViajesServ.TraerViajes()
@@ -49,11 +71,15 @@ export class ClienteComponent implements OnInit {
             this.misviajes.push(this.viajes[index]);
            }
          }
+
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error');
+
+        });
   }
 
-  Solicitar()
+  Solicitar()  
   {
     if(this.ValidarDatos())
     {
@@ -61,7 +87,7 @@ export class ClienteComponent implements OnInit {
     }
     else
     {
-        alert("Complete todos los campos.");
+     this.alerts.setMessage('Complete todos los campos.','error');
     }
   }
 
@@ -87,11 +113,16 @@ export class ClienteComponent implements OnInit {
       var seg = dt.getSeconds();
       this.miViaje.hora = hora + ':' + min + ':' + seg;
 
+      this.miViaje.encuesta = "N";
+      this.miViaje.idremisero = 0;
+
+      console.log(this.miViaje); 
+
       if(this.miViaje.id == null)
       {
         var respuesta=  this.ViajesServ.IngresarViaje(this.miViaje,mensaje => {
           console.log(mensaje); 
-          alert(mensaje);
+         this.alerts.setMessage(mensaje,'success');
           this.Limpiar();
           this.TraerDatos();
         });
@@ -100,7 +131,7 @@ export class ClienteComponent implements OnInit {
       {
         var respuesta=  this.ViajesServ.ModificarConID(this.miViaje,mensaje => {
           console.log(mensaje); 
-          alert(mensaje);
+          this.alerts.setMessage(mensaje,'success');
           this.Limpiar();
           this.TraerDatos();
         });
@@ -125,12 +156,15 @@ export class ClienteComponent implements OnInit {
     this.miViaje.idcliente = null;
     this.miViaje.fecha = "";
     this.miViaje.hora = "";
+
+    localStorage.setItem("OrigenViaje","");
+    localStorage.setItem("DestinoViaje","");
   }
 
   Borrar(id:number)
   {
         var respuesta = this.ViajesServ.BorrarViaje(id.toString(), retorno => {
-      alert(retorno);
+          this.alerts.setMessage(retorno,'success');
       this.TraerDatos();
     });
    
@@ -141,6 +175,7 @@ export class ClienteComponent implements OnInit {
     this.miViaje.id = null;
     this.ViajesServ.TraerUnViaje(id.toString())
     .then(
+      
       viaje=>{  this.miViaje = viaje
 
         this.miViaje.id = viaje.id;
@@ -150,7 +185,9 @@ export class ClienteComponent implements OnInit {
         this.vehiculo = viaje.prestacion;
         this.nivel = viaje.nivel
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error');
+    });
   }
 
   ValidarDatos()
@@ -160,10 +197,34 @@ export class ClienteComponent implements OnInit {
     retorno = retorno && this.origen != "" && this.origen != null;
     retorno = retorno && this.vehiculo != "" && this.vehiculo != null;
     retorno = retorno && this.nivel != "" && this.nivel != null;
-
+    retorno = retorno && this.flag != false; 
 
     return retorno;
   }
 
+  Encuesta(idviaje:number)
+  {
+
+      localStorage.setItem("idViajeEncuesta",idviaje.toString());
+      this.router.navigate(['/encuesta']);
+  }
+
+  
+  Validar(valorCaptcha : boolean){
+    this.flag = valorCaptcha;    
+    if(this.flag)
+    {
+     this.alerts.setMessage("Es validado",'success');
+    }
+    else
+    {
+     this.alerts.setMessage('No es validado','error')
+    }
+  }
+
+  Mapa()
+  {
+    this.router.navigate(['/mapa']);
+  }
 
 }

@@ -1,10 +1,11 @@
 <app-cabecera></app-cabecera>
-
+<app-alerts></app-alerts>
+<ngx-spinner size="large"></ngx-spinner>
 <table class="table table-condensed"> 
         <thead>
             <tr>
-                <th><font color="3a7999" size="3">Origen</font></th>
-                <th><font color="3a7999" size="3">Destino</font></th>
+                <th><font color="3a7999"  size="3">Origen</font></th>
+                <th><font color="3a7999"  size="3">Destino</font></th>
                 <th><font color="3a7999" size="3">Fecha</font></th>
                 <th><font color="3a7999" size="3">Hora</font></th>
                 <th><font color="3a7999" size="3">Prestacion</font></th>
@@ -16,20 +17,20 @@
           </thead>
       <tbody>
             <tr *ngFor="let item of misviajes"> 
-                  <td><font color="3a7999" size="3">{{item.origen}} </font></td>        
-                  <td><font color="3a7999" size="3">{{item.destino}} </font></td>
+                  <td style="width:19%" ><font color="3a7999"  size="3">{{item.origen}} </font></td>        
+                  <td style="width:19%" ><font color="3a7999" size="3">{{item.destino}} </font></td>
                   <td><font color="3a7999" size="3">{{item.fecha}} </font></td>
                   <td><font color="3a7999" size="3">{{item.hora}} </font></td>
                   <td><font color="3a7999" size="3">{{item.prestacion}} </font></td>
                   <td><font color="3a7999" size="3">{{item.nivel}} </font></td>
                   <td >
-                    <select class="form-control"  style="width:350px" id="{{item.id}}" >
+                    <select class="form-control"  style="width:200px" id="{{item.id}}" >
                         <option value="" disabled selected>Seleccione Medio de pago</option>   
                         <option value="Efectivo">Efectivo</option>
                         <option value="Cuenta Corriente">Cuenta Corriente</option>
                     </select>
                  </td>
-                 <td><input type="number"  class="form-control"  name="{{item.id}}"  placeholder="monto"/></td>
+                 <td><input type="number"  class="form-control" style="width:100px" name="{{item.id}}"  placeholder="monto"/></td>
                 <td><button type="button" (click)="AsignarPago(item.id)" class='boton'>Terminar viaje</button> </td>              
                
             </tr>  

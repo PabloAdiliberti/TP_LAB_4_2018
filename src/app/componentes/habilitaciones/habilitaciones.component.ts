@@ -3,6 +3,8 @@ import {Remisero} from '../../clases/remisero';
 import {Vehiculo} from '../../clases/vehiculo';
 import { RemiseroService } from  '../../servicios/remisero.service';
 import { VehiculoService } from  '../../servicios/vehiculo.service';
+import { AlertsService } from 'angular-alert-module';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-habilitaciones',
@@ -16,11 +18,20 @@ export class HabilitacionesComponent implements OnInit {
   listaVehiculos:any;
   VehiculosList : Array<Vehiculo>
 
-  constructor(private RemiseroServ:RemiseroService,private VehiculoServ:VehiculoService) {
+  constructor(private RemiseroServ:RemiseroService,
+    private alerts: AlertsService,
+    private spinner: NgxSpinnerService,
+    private VehiculoServ:VehiculoService) {
     this.TraerDatos();
    }
 
   ngOnInit() {
+    this.spinner.show();
+ 
+    setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 2000);
   }
 
 
@@ -37,7 +48,9 @@ export class HabilitacionesComponent implements OnInit {
        this.TraerDatosVehiculos();
         
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error')
+    });
     console.log(this.RemiserosList);
   }
 
@@ -53,7 +66,9 @@ export class HabilitacionesComponent implements OnInit {
           this. CargarNombreVehiculo() 
        }       
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error')
+    });
     //console.log(this.VehiculosList);
   }
 
@@ -91,7 +106,7 @@ export class HabilitacionesComponent implements OnInit {
 
           this.RemiseroServ.ModificarRemisero(this.RemiserosList[index],mensaje => {
          // console.log(mensaje); 
-          alert(mensaje);
+         this.alerts.setMessage(mensaje,'success');
           this.TraerDatos();
         });
       }
@@ -119,7 +134,7 @@ export class HabilitacionesComponent implements OnInit {
         }
 
           this.VehiculoServ.ModificarVehiculo(this.VehiculosList[index],mensaje => { 
-          alert(mensaje);
+           this.alerts.setMessage(mensaje,'success');
           this.TraerDatos();
         });
       }

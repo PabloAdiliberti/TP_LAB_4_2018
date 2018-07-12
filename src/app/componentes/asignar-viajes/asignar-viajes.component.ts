@@ -5,6 +5,8 @@ import { VehiculoService } from  '../../servicios/vehiculo.service';
 import {Viaje} from '../../clases/viaje';
 import {Remisero} from '../../clases/remisero';
 import {Vehiculo} from '../../clases/vehiculo';
+import { AlertsService } from 'angular-alert-module';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-asignar-viajes',
@@ -24,15 +26,24 @@ export class AsignarViajesComponent implements OnInit {
 
   constructor(private ViajesServ:ViajesService,
     private RemiseroServ:RemiseroService,
+    private spinner: NgxSpinnerService,
+   private alerts: AlertsService,
     private VehiculoServ:VehiculoService) {
     this.TraerDatos();
    }
 
   ngOnInit() {
+    this.spinner.show();
+ 
+    setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 2000);
   }
 
   TraerDatos()
   {
+
     this.misviajes = null;
     this.misviajes = new Array<Viaje>();
     this.ViajesServ.TraerViajes()
@@ -45,9 +56,11 @@ export class AsignarViajesComponent implements OnInit {
            }
          }
          this.TraerDatosRemiseros();
-         console.log(this.viajes); 
+         //console.log(this.viajes); 
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error'); 
+    });
    
   }
 
@@ -65,13 +78,17 @@ export class AsignarViajesComponent implements OnInit {
           }    
        }
        this.TraerDatosVehiculos();
-        
+       console.log(this.VehiculosList); 
+       console.log(this.RemiserosList); 
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error')
+    });
   }
 
   TraerDatosVehiculos()
   {
+
     this.VehiculosList = null;
     this.VehiculosList = new Array<Vehiculo>();
     this.VehiculoServ.TraerVehiculos()
@@ -80,9 +97,12 @@ export class AsignarViajesComponent implements OnInit {
       for (let index = 0; index < this.listaVehiculos.length; index++) {
           this.VehiculosList.push(this.listaVehiculos[index]);   
           this. CargarNombreVehiculo() 
+
        }      
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error'); 
+    });
 
   }
 
@@ -120,13 +140,13 @@ export class AsignarViajesComponent implements OnInit {
       viaje.enviaje = "S";
 
       var respuesta=  this.ViajesServ.ModificarViajeParaRemisero(viaje,mensaje => {
-        alert(mensaje);
+       this.alerts.setMessage(mensaje,'success');
         this.TraerDatos();
       });
     }
     else
     {
-       alert("Seleccion un remisero.");
+      this.alerts.setMessage('Seleccion un remisero.','error')
     }
   }
 

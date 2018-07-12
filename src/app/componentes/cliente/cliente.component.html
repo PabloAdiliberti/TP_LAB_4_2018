@@ -1,4 +1,6 @@
 <app-cabecera></app-cabecera>
+<app-alerts></app-alerts>
+<ngx-spinner size="large"></ngx-spinner>
 <table class="table table-condensed">
     <thead>
       <tr>
@@ -10,8 +12,10 @@
       <tr>
         <!-- solicitar viaje -->
         <td>
-            <input type="text" style="width:270px" class="form-control" name="origen" [(ngModel)]="origen" placeholder="origen"/><br>
-            <input type="text" style="width:270px" class="form-control" name="destino" [(ngModel)]="destino" placeholder="destino"/><br>
+            <input type="text" style="width: 270px" class="form-control" name="origen" disabled [(ngModel)]="origen" placeholder="origen"/>
+         
+            <input type="text" style="width:270px" class="form-control" name="destino" disabled [(ngModel)]="destino" placeholder="destino"/>
+            <button type="button" style="width:270px" (click)="Mapa()" class='boton'>Mapa</button><br><br>
             <select class="form-control"  style="width:270px" name="firstField" [(ngModel)]="vehiculo" >
                 <option value="" disabled selected>Seleccione vehiculo</option>
                 <option value="Auto">Auto</option>
@@ -26,8 +30,9 @@
                     <option value="Super Lujo">Super Lujo</option>
                     <option value="Indeterminado">Indeterminado</option>
             </select><br>
-            <input type="text" style="width:270px" class="form-control" name="usuario" placeholder="poner capcha"/><br>
-            <button type="button" (click)="Solicitar()" class='boton'>Solicitar</button>
+ 					 <app-captcha (valorCaptcha)="Validar($event)"></app-captcha><br>
+            <button type="button" (click)="Solicitar()" style="width:270px" class='boton'>Solicitar</button>
+            <br> <br> <br>
         </td>
          <!-- mis viajes -->
         <td>
@@ -41,6 +46,7 @@
                       <th><font color="3a7999" size="3">Estado</font></th>
                       <th><font color="3a7999" size="3">Borrar</font></th>
                       <th><font color="3a7999" size="3">Modificar</font></th>
+                      <th><font color="3a7999" size="3">Encuesta</font></th>
                   </tr>
                 </thead>
             <tbody>
@@ -55,6 +61,9 @@
                         <td><div *ngIf="item.estado != 'Finalizado'">
                         <button type="button" (click)="Modificar(item.id)" class='boton'>Modificar</button>             
                       </div> </td> 
+                      <td><div *ngIf="item.estado == 'Finalizado' && item.encuesta == 'N'">
+                          <button type="button" (click)="Encuesta(item.id)" class='boton'>Encuesta</button>             
+                        </div> </td> 
                   </tr>  
             </tbody> 
           </table>
@@ -63,5 +72,8 @@
       </tr>   
     </tbody>
   </table>
+
+
+
 
 <app-footer></app-footer>

@@ -1,27 +1,18 @@
 # FinalAdiliberti
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
+web : https://adilibertifinal.000webhostapp.com
 
-## Development server
+gitgub : https://github.com/PabloAdiliberti
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Remiseria NewCar:
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Es una web para solocitar tranporte como autos camionetas o furgonetas,
+esta tambien sirve para adminitrar esos pedidos mediante un usuario adminitrativo
+que designa los viajes, el mismo puedo dar de alta remiseros y vehiculos nuevos 
+y asisnarles sus autos a los choferes, 
+ademas de habilitarlos y desabilitarlos segun corresponda, otra de sus facultades 
+es ver todos los viajes realizados por todos los choferes y vez las estadisticas de estos viajes
+y las encuestas respondidas podor los clientes.
+Los usuarios de tipo chofer pueden ver sus viajes realizados e ingresar el medio de pago y el monto
+del viaje al final del mismo.
+Los clientes pueden completar una encuesta de cada viajes para reflejar su conformidad.

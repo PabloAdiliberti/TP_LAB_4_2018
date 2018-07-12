@@ -12,6 +12,7 @@ export class Viaje
     public prestacion:string;
     public nivel:string;
     public monto:string;
+    public encuesta:string;
 
     
     public enviaje:string;

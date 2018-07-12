@@ -3,6 +3,8 @@ import { ViajesService } from  '../../servicios/viajes.service';
 import { RemiseroService } from  '../../servicios/remisero.service';
 import {Viaje} from '../../clases/viaje';
 import {Remisero} from '../../clases/remisero';
+import { AlertsService } from 'angular-alert-module';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-remisero-viajes',
@@ -16,15 +18,23 @@ export class RemiseroViajesComponent implements OnInit {
   idUsuario:string;
   idRemisero:string;
 
-  constructor(private ViajesServ:ViajesService,private RemiseroServ:RemiseroService,) {
+  constructor(private ViajesServ:ViajesService,
+    private alerts: AlertsService,
+    private spinner: NgxSpinnerService,
+    private RemiseroServ:RemiseroService,) {
     this.idUsuario = localStorage.getItem("idCliente");
-    //alert(this.idUsuario);
-    //this.TraerDatos();
-    //this.miRemisero = new Remisero();
+
     this.TraerDatosRemisero();
    }
 
   ngOnInit() {
+    this.spinner.show();
+ 
+    setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 2000);
+
   }
 
 
@@ -43,19 +53,26 @@ export class RemiseroViajesComponent implements OnInit {
          }
          console.log(this.misviajes); 
     })
-    .catch(e=>{alert("Fallo")});   
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error')
+    });   
   }
 
 
   TraerDatosRemisero()
   {
+
     this.RemiseroServ.TraerUnRemiseroPorUsuario(this.idUsuario)
     .then(
       remisero=>{  
         this.idRemisero = remisero.id;
         this.TraerDatos();
+
     })
-    .catch(e=>{alert("Fallo")});
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error');
+
+      });
   }
 
   AsignarPago(id:number)
@@ -77,16 +94,16 @@ export class RemiseroViajesComponent implements OnInit {
     viaje.enviaje = "N";
     viaje.idremisero = +this.idRemisero;
 
-    if(medioPago != null && Monto != null && +Monto > 0)
+    if(medioPago != "" && medioPago != null && Monto != null &&  Monto != "" &&+Monto > 0)
     { 
        var respuesta=  this.ViajesServ.ModificarViajePorMedioPago(viaje,mensaje => {
-        alert(mensaje);
+        this.alerts.setMessage(mensaje,'success');
         this.TraerDatos();
       });
     }
     else
     {
-      alert("Complete todo los campos");
+      this.alerts.setMessage('Complete todo los campos','error')
     }
   }
 }

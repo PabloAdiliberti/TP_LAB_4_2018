@@ -57,3 +57,23 @@ input[type="select"] {
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
+
+.alertsContainer .alertsRow  {
+  border: 1px solid #ffc549;
+}
+.alertsContainer .alertsRow.iconpanel {
+  background:#ffc549;
+  color: #fff;
+}
+.alertsContainer .alertsRow.messagepanel {
+  color: #000;
+  background: #fff;
+}
+.alertsContainer .alertsRow.closeicon {
+  color: #000;
+}
+.alertsContainer .alertsRow.closeicon a {
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+}

@@ -3,7 +3,8 @@ import { PersonaService } from  '../../servicios/persona.service';
 import { VehiculoService } from  '../../servicios/vehiculo.service';
 import {Usuario} from '../../clases/usuario';
 import {Vehiculo} from '../../clases/vehiculo';
-
+import { AlertsService } from 'angular-alert-module';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-altas',
@@ -19,18 +20,28 @@ export class AltasComponent implements OnInit {
   tipo:string;
   modelo:string;
 
-  constructor(private PersonaS:PersonaService,private VehiculoS:VehiculoService) {
-    //this.tipo = "Seleccione tipo vehiculo";
-    //this.nivel = "Seleccione nivel de comodidad";
+
+
+  constructor(private PersonaS:PersonaService,
+   private alerts: AlertsService,
+    private spinner: NgxSpinnerService,
+    private VehiculoS:VehiculoService) {
     this.traerDatos();
    }
 
   ngOnInit() {
+    this.spinner.show();
+ 
+    setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 2000);
+
+
   }
 
   traerDatos()
   {
-
     this.usuariosCombo = new Array<Usuario>();
     this.PersonaS.TraerTodosLosUsuarios() 
     .then(
@@ -45,7 +56,10 @@ export class AltasComponent implements OnInit {
           }
          }
     })
-    .catch(e=>{alert("Fallo")});    
+    .catch(e=>{
+      this.alerts.setMessage('Fallo','error'); 
+
+    });    
   }
 
   ActualizarARemisero()
@@ -60,13 +74,13 @@ export class AltasComponent implements OnInit {
     if(idRemisero != "" && idRemisero != null)
      {
         var respuesta = this.PersonaS.IngresarRemisero(miusuario, retorno => {
-        alert(retorno);
+        this.alerts.setMessage(retorno,'success');
         this.traerDatos();
       });
      }
      else
      {
-       alert("Eliga un usuario.")
+       this.alerts.setMessage('Eliga un usuario.','error');
      }
 
   }
@@ -80,17 +94,18 @@ export class AltasComponent implements OnInit {
       vehiculo.foto = "";
       vehiculo.habilitado = "S";
 
+
       if(this.modelo != "" && this.modelo != null && this.tipo != "" && this.tipo != null && this.nivel != "" && this.nivel != null)
       {  
         var respuesta=  this.VehiculoS.IngresarmiVehiculo(vehiculo,mensaje => {
           console.log(mensaje); 
-          alert(mensaje);
+          this.alerts.setMessage(mensaje,'success');
           this.Limpiar();
         });
       }
       else
       {
-        alert("Complete todo los campos.")
+       this.alerts.setMessage('Complete todo los campos.','error');
       }
   }
 
@@ -100,5 +115,7 @@ export class AltasComponent implements OnInit {
     this.tipo = "";
     this.modelo = "";
   }
+
+
 
 }

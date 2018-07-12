@@ -9,5 +9,6 @@ export class Remisero extends Usuario {
     public enviaje:string;
 
     public tipoVehiculo:string;
+    public montoTotal:number;
 
 }

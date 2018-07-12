@@ -10,11 +10,11 @@ export class ArchivoPersonaService {
   constructor(public mihttp:MiHttpService) { }
 
   public APIPostJWT(Ruta:string,usuario:string,clave:string, callback: (token: string) => void) { 
-   var rta =  this.mihttp.postjwt(Ruta ,usuario,clave, data => { 
+    var rta =  this.mihttp.postjwt(Ruta ,usuario,clave, data => { 
+    
     console.log(data);
-
-    var tipo = JSON.parse(data.text()).tipo.tipo;
-    var id = JSON.parse(data.text()).tipo.id;
+    var tipo = JSON.parse(data.text()).tipo;
+    var id = JSON.parse(data.text()).id;
     localStorage.clear();
     localStorage.setItem("tipo",tipo);
     localStorage.setItem("idCliente",id);

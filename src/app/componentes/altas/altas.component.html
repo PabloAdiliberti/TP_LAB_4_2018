@@ -1,6 +1,7 @@
 
 <app-cabecera></app-cabecera>
-
+<app-alerts></app-alerts>
+<ngx-spinner size="large"></ngx-spinner>
 <table class="table table-condensed">
     <thead>
       <tr>
@@ -33,11 +34,21 @@
                   <option value="Premium">Premium</option>
                   <option value="Super Lujo">Super Lujo</option>
           </select><br>
-          <input type="text" style="width:350px" class="form-control" name="modelo" [(ngModel)]="modelo" placeholder="Modelo"/><br>
-          <button type="button" (click)="AltaVehiculo()" class='boton'>Alta vehiculo</button>
+          <input type="text" style="width:350px" class="form-control" name="modelo" [(ngModel)]="modelo" placeholder="Modelo"/>
+          <br>
+          <!-- <input type="file" name="photo" ng2FileSelect class='boton' [uploader]="uploader" />
+          <br>
+          <br>
+          <img width="350" alt="Vehiculo" src= {{ruta}} />
+          <br>
+          {{ruta}}
+          <br> -->
+
 
         </td>
       </tr>   
     </tbody>
   </table>
+  <br>
+  <br>
 <app-footer></app-footer>

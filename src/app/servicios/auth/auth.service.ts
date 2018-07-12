@@ -41,7 +41,6 @@ export class AuthService {
   public getExpirationDate()
   {
     try {
-      alert("asd");
       console.log('getExpirationDate', this.jwtHelper)
       return this.jwtHelper.getTokenExpirationDate(this._token);
     } catch (error) {

@@ -1,0 +1,79 @@
+agm-map {
+  height: 550px;
+}
+
+.Fondo1{
+  background-image: url("/assets/fondo1.jpg"); 
+  width: 100%;
+  height: 100%;
+}
+
+.boton:hover {
+  background: rgba(0,0,0,0);
+  color: #3a7999;
+  box-shadow: inset 0 0 0 3px #3a7999;
+ }
+
+
+
+.boton{
+  border: none;
+  background: #3a7999;
+  color: #f2f2f2;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+
+  box-sizing: border-box;
+  transition: all 500ms ease;
+}
+
+.boton2:hover {
+  background: rgba(0,0,0,0);
+  color: red;
+  box-shadow: inset 0 0 0 3px red;
+ }
+
+
+
+.boton2{
+  border: none;
+  background: red;
+  color: #f2f2f2;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+
+  box-sizing: border-box;
+  transition: all 500ms ease;
+}
+
+ .text1{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #3a7999;
+  border-radius: 4px;
+}
+
+.alertsContainer .alertsRow  {
+  border: 1px solid #ffc549;
+}
+.alertsContainer .alertsRow.iconpanel {
+  background:#ffc549;
+  color: #fff;
+}
+.alertsContainer .alertsRow.messagepanel {
+  color: #000;
+  background: #fff;
+}
+.alertsContainer .alertsRow.closeicon {
+  color: #000;
+}
+.alertsContainer .alertsRow.closeicon a {
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+}
+

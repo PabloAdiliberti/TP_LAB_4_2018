@@ -1,0 +1,48 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrwvmO8LJ_mYkFsdIkZ6EFXi-dWwfH05M"></script>
+
+<script type="text/javascript" src="map.js" ></script>
+
+
+
+
+
+<app-cabecera></app-cabecera>
+<app-alerts></app-alerts>
+<ngx-spinner size="large"></ngx-spinner>
+<table class="table table-condensed"> 
+      
+  <thead>   
+  </thead>
+  <tbody>
+        <tr> 
+            <td>
+                <div align="center">
+                    <h1>{{ title1 }}</h1>
+                    <h1>{{ title2 }}</h1>
+                    <h1>{{ title3 }}</h1>
+                    <input [(ngModel)]='origen' style="width: 300px" (focusout)="OrigenOut($event)" type="text" placeholder="Origen" autocorrect="on" autocapitalize="off" spellcheck="off" class="form-control" #search>
+                    <br>
+                    <input [(ngModel)]='destino' style="width: 300px" (focusout)="DestinoOut($event)" type="text" placeholder="Destino" autocorrect="on" autocapitalize="off" spellcheck="off" class="form-control" #search2>
+                    <br>
+                    <button type="button" style="margin-right: 2%;" (click)="Listo()" class='boton'>Listo</button>
+                    <button type="button" (click)="Salir()" class='boton'>Salir</button>
+                    </div>
+            </td>        
+            <td>
+                <div style="width:600px;height:550px;">
+                    <agm-map 
+                      [latitude]="lat"
+                      [longitude]="lng"
+                      [zoom]="zoom"
+                      [disableDefaultUI]="false"
+                      [zoomControl]="false"
+                      (mapClick)="mapClicked($event)">
+                      <agm-direction [origin]="origin" [destination]="destination" [provideRouteAlternatives]='true'>        
+                      </agm-direction>
+                    </agm-map>
+                    </div>
+            </td>        
+        </tr>   
+  </tbody> 
+</table>
+<app-footer></app-footer>

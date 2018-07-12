@@ -17,7 +17,11 @@ import { AdminService } from '../servicios/auth/admin.service';
 import { ClienteService } from '../servicios/auth/cliente.service';
 import { RemiseroService } from '../servicios/auth/remisero.service';
 import {AltasComponent} from '../componentes/altas/altas.component';
+import {MapaComponent} from '../componentes/mapa/mapa.component';
+import {EstadisticasComponent} from '../componentes/estadisticas/estadisticas.component';
 import {AsignarVehiculoComponent} from '../componentes/asignar-vehiculo/asignar-vehiculo.component';
+
+
 
 const MiRuteo = [
   {path: 'inicio' , component: InicioComponent},
@@ -31,6 +35,8 @@ const MiRuteo = [
   {path: 'asignarViajes' , component: AsignarViajesComponent, canActivate: [AdminService]},
   {path: 'todos' , component: TodosLosViajesComponent, canActivate: [AdminService]},
   {path: 'altas' , component: AltasComponent, canActivate: [AdminService]},
+  {path: 'estadisticas' , component: EstadisticasComponent, canActivate: [AdminService]},
+  {path: 'mapa' , component: MapaComponent},
   {path: 'todosMisViajes' , component: TodosLosViajesParaRemiseroComponent, canActivate: [RemiseroService]},
   {path: 'asignarVehiculo' , component: AsignarVehiculoComponent, canActivate: [AdminService]},
   {path: '' , component: InicioComponent},

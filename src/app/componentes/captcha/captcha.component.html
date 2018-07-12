@@ -1,0 +1,8 @@
+<input type="text" class="form-control" [(ngModel)]='captcha.captcha' disabled readonly />
+<input type="text" class="form-control" placeholder="Introduzca el codigo" 
+ (change)="Validar($event)"  [(ngModel)]='captcha.rta' />
+
+ <!-- <input type="text"  class="form-control" /> -->
+
+<button type="button" style="width:70%" class='boton' (click)='Generar()'>Validar<i class="fa fa-retweet"></i></button>
+<br>

@@ -7,6 +7,8 @@
         <div class = "container" >
             <div class="wrapper">
                 <br><br>
+                <app-alerts></app-alerts>
+                <ngx-spinner size="large"></ngx-spinner>
                 <form action="" method="post" name="Login_Form" class="form-signin">       
                     <h3 class="form-signin-heading">Registrar</h3>             
                     <input type="text"  class="form-control"  name="usuario" [(ngModel)]="nombre" placeholder="Nombre"/><br>
@@ -14,7 +16,13 @@
                     <input type="text"  class="form-control"  name="usuario" [(ngModel)]="mail" placeholder="Mail"/><br>
                     <input type="password"  class="form-control"  name="usuario" [(ngModel)]="clave" placeholder="Clave"/><br>
                     <input type="password"  class="form-control"  name="usuario" [(ngModel)]="clave2" placeholder="Reingrese la clave"/><br>
-                    <!-- <input type="text" class="form-control"  name="usuario" [(ngModel)]="foto" placeholder="foto"/><br> -->
+                    <div class="modal-footer">
+							<div style="margin-left: 2%; margin-top: 2%">
+									<re-captcha (resolved)="resolved($event)" siteKey="6LcDYl8UAAAAAGldDD9FkPHv-B5Pf-r_CC0hxtAj"></re-captcha>
+						 </div>
+								<script src='https://www.google.com/recaptcha/api.js'></script>
+							
+					</div>
   
                     <button type="submit"  class="btn btn-lg btn-primary btn-block" style="background-color:Gray;" (click)="Registrar()" id="submit1">Registrar</button>
                     <button type="submit"  class="btn btn-lg btn-primary btn-block" style="background-color:Gray;" (click)="Salir()" id="submit">Salir</button>

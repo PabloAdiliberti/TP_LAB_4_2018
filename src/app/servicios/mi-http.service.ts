@@ -6,7 +6,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-var path = "http://localhost:8080/proyectoNuevo/Api/index.php/";
+//var path = "http://localhost:8080/proyectoNuevo/Api/index.php/";
+var path = "https://adilibertifinal.000webhostapp.com/api/index.php/";
+
 
 @Injectable()
 export class MiHttpService {
@@ -62,7 +64,7 @@ export class MiHttpService {
     }
 
   //traer uno
-  Traeruno(url:string)
+  public Traeruno(url:string)
   {
     return this.http
     .get(path+url)
@@ -70,6 +72,16 @@ export class MiHttpService {
     .then(this.extraerDatos)
     .catch(this.manejadorDeError);
   }
+
+    //traer uno
+    TraerLugar(url:string)
+    {
+      return this.http
+      .get(url)
+      .toPromise()
+      .then(this.extraerDatos)
+      .catch(this.manejadorDeError);
+    }
 
   //traer todos
   dameunapromesa(url:string)

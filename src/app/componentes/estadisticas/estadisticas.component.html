@@ -1,0 +1,95 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+<app-cabecera></app-cabecera>
+<app-alerts></app-alerts>
+
+<table class="table table-condensed"> 
+        <thead>
+            <tr >
+                <th ><font color="3a7999"  size="3">Estadisticas{{barChartData1}}</font></th>
+            </tr>
+          </thead>
+      <tbody>
+            <tr> 
+                <td>     
+                        <font color="3a7999" size="3">¿Cómo estuvo su viaje?</font>
+                        <div style="display: block;width:400px;">
+                                <canvas baseChart
+                                            [data]="doughnutChartData"
+                                            [labels]="doughnutChartLabels"
+                                            [chartType]="doughnutChartType"
+                                ></canvas>
+                        </div>
+               
+               </td>    
+               <td>
+                    <div>
+                            <div style="display: block;width:600px;">
+                                <canvas baseChart
+                                        [datasets]="barChartData"
+                                        [labels]="barChartLabels1"
+                                        [options]="barChartOptions"
+                                        [legend]="barChartLegend"
+                                        [chartType]="barChartType"
+                                ></canvas>
+                            </div>
+                        </div>
+               </td>              
+            </tr> 
+            <tr>
+                <td>
+                        
+                      
+                        <div style="display: block;width:600px;">
+                                <canvas baseChart
+                                        [datasets]="barChartData1"
+                                        [labels]="barChartLabels1"
+                                        [options]="barChartOptions1"
+                                        [legend]="barChartLegend1"
+                                        [chartType]="'bar'"
+                                ></canvas>
+                            </div>
+                </td>
+                <td>
+                        <font color="3a7999" size="3">¿Volvería a viajar con nosotros?</font>
+                        <div style="display: block;width:400px;">
+                                <canvas baseChart
+                                    [data]="pieChartData"
+                                    [labels]="pieChartLabels"
+                                    [chartType]="pieChartType"
+                                    ></canvas>
+                        </div>
+                </td>
+            </tr> 
+            <tr>
+                <td>
+                        <font color="3a7999" size="3">Horarios con mas viaje por remisero</font>
+                        <div style="display: block;width:400px;">
+                            <canvas
+                            baseChart
+                            [chartType]="'line'"
+                            [datasets]="chartData1"
+                            [labels]="chartLabels1"
+                            [options]="chartOptions1"
+                            [legend]="true">
+                        </canvas>
+                            </div>
+                </td>
+                <td>
+                        <font color="3a7999" size="3">¿El precio fue acorde a lo esperado?</font>
+                        <div style="display: block;width:400px;">
+                                <canvas baseChart
+                                    [data]="pieChartData1"
+                                    [labels]="pieChartLabels1"
+                                    [chartType]="pieChartType1">           
+                                </canvas>
+                        </div>
+                </td>
+            </tr>
+      </tbody> 
+    </table>
+
+<br>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

@@ -1,3 +1,151 @@
-<p>
-  encuesta works!
-</p>
+<app-cabecera></app-cabecera>
+<app-alerts></app-alerts>
+<ngx-spinner size="large"></ngx-spinner>
+<table class="table table-condensed"> 
+    <thead>
+
+        <tr>
+            <th><font color="3a7999" size="3">Encuesta</font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+            <th><font color="3a7999" size="3"></font></th>
+        </tr>
+
+      </thead>
+  <tbody>
+      <tr> 
+          <td><font color="3a7999" size="3">1-¿Volvería a viajar con nosotros?</font></td>     
+            <td>
+              <div style="margin-bottom: 10px"><font style="margin:10px" color="3a7999" size="4">NO/SI</font></div>
+              <label class="switch"  style="margin-top:10px">
+              <input type="checkbox" id="CH1">
+              <span class="slider round"></span>
+              </label>
+            </td>   
+      </tr> 
+    <tr> 
+      <td><font color="3a7999" size="3">2-¿Por qué?</font></td>     
+      <td> <input type="text"  class="form-control" style="color:Gray;" name="pregunta2" [(ngModel)]="pregunta2" placeholder="Respuesta"/> </td>  
+    </tr> 
+    <tr> 
+        <td><font color="3a7999" size="3">3-¿Cómo estuvo su viaje?</font></td>     
+        <td><select [(ngModel)]="pregunta3" name="areg" class="form-control">
+            <option value="Excelente">Excelente</option>
+            <option value="MuyBueno">Muy Bueno</option>
+            <option value="Bueno">Bueno</option>
+            <option value="Regular">Regular</option>
+            <option value="Malo">Malo</option>
+          </select> </td>
+    </tr> 
+    <tr> 
+        <td><font color="3a7999" size="3">4-¿Qué le pareció el chofer?</font></td>     
+        <td>       
+            <font color="3a7999" size="3"> Amable </font>
+            <input type="checkbox" id="checkbox1" autocomplete="off" >
+            <font color="3a7999" size="3"> Educado </font>
+            <input type="checkbox" id="checkbox2" autocomplete="off" >
+            <font color="3a7999" size="3"> Respeta señales de transito </font>
+            <input type="checkbox" id="checkbox3" autocomplete="off" >
+            <font color="3a7999" size="3"> Atento al camino </font>
+            <input type="checkbox" id="checkbox4" autocomplete="off" >
+        </td>
+    </tr>  
+    <tr> 
+        <td><font color="3a7999" size="3">5-¿Cómo califica el vehículo?</font></td>     
+        <td><div class="well well-sm text-left">
+            <div class="btn-group" data-toggle="buttons">
+              
+              <label class="btn">
+                <input  type="radio" id="option1" value="1">
+                1
+              </label>
+        
+              <label class="btn ">
+                <input  type="radio" id="option2" autocomplete="off" value="2">
+                2
+              </label>
+        
+              <label class="btn ">
+                <input  type="radio"  id="option3" autocomplete="off" value="3">
+                3
+              </label>
+        
+              <label class="btn ">
+                <input  type="radio" id="option4" autocomplete="off" value="4">
+                4
+              </label>
+        
+              <label class="btn ">
+                <input   type="radio"  id="option5" autocomplete="off" value="5">
+               5
+              </label>
+        
+              <label class="btn ">
+                <input  type="radio"  id="option6" autocomplete="off" value="6">
+                6
+              </label>
+              <label class="btn ">
+                <input  type="radio"  id="option7" autocomplete="off" value="7" >
+                7
+              </label>
+        
+              <label class="btn ">
+                <input  type="radio"  id="option8" autocomplete="off" value="8">
+                8
+              </label>
+        
+              <label class="btn ">
+                <input  type="radio"  id="option9" autocomplete="off" value="9">
+                9
+              </label>
+        
+              <label class="btn btn-default">
+                <input type="radio" id="option10" autocomplete="off" value="10">
+                10
+              </label>       
+          </div>  
+          </div></td>
+    </tr> 
+    <tr> 
+        <td><font color="3a7999" size="3">6-¿Qué le parecio la ruta escogida?</font></td>     
+        <td><select [(ngModel)]="pregunta6" name="areg" class="form-control">
+            <option value="Excelente">Excelente</option>
+            <option value="MuyBueno">Muy Bueno</option>
+            <option value="Bueno">Bueno</option>
+            <option value="Regular">Regular</option>
+            <option value="Malo">Malo</option>
+          </select></td>   
+    </tr>      
+    <tr> 
+        <td><font color="3a7999" size="3">7-¿El precio fue acorde a lo esperado?</font></td>     
+        <td><input type="image" style='width:80px;height:80px' (click)="preguntaSiete('Bien')"  img src="../../../assets/contento.png">
+          <input class="miboton" type="image"style='width:80px;height:80px' (click)="preguntaSiete('Dudoso')"  img src="assets/pensando.png">
+          <input class="miboton" type="image"style='width:80px;height:80px' (click)="preguntaSiete('Malo')"  img src="assets/triste.png"> </td>
+    </tr>      
+    <tr> 
+        <td><font color="3a7999" size="3">8-¿Nos Recomendari con sus amigos?</font></td>     
+        <td>
+            <div style="margin-bottom: 10px"><font style="margin:10px" color="3a7999" size="4">NO/SI</font></div>
+            <label class="switch"  style="margin-top:10px">
+            <input type="checkbox" id="CH8">
+            <span class="slider round"></span>
+            </label>
+        </td>   
+    </tr>
+    <tr> 
+ 
+        <td><button type="button" (click)="cargarEncuesta()" style="margin-right: 15%;" class='boton'>Cargar encuesta</button>
+        </td>   
+    </tr>
+    <br><br>             
+  </tbody> 
+</table>
+
+
+<app-footer></app-footer>

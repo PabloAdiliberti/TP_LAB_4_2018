@@ -17,7 +17,6 @@ export class VerificarJwtService implements CanActivate {
       //  console.log('url dentro de canActivate', url);
       //  console.log(route);
       //  console.log(state);
-      //  alert("asd");
        // console.log('isLogued()', this.auth.getExpirationDate());
       //  if ( this.auth.isLogued() && localStorage.getItem('tipo') == 'admin'  )
       if ( this.auth.isLogued()   )
